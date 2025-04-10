@@ -135,7 +135,8 @@ find_bigram_with_1(text_for_work, russian_alphabet1, bigram_list)
 h21 = find_H2(bigram_list)
 #print(f"H2 для тексту з пробілами: {h21:}")
 
-
+with open("input.txt", "r", encoding="utf-8") as file:
+    text_for_work = file.read()
     
 #тут текст без пробілів
 text_excpiriments=delete_fromtext_probel(text_for_work)

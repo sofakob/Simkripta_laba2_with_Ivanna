@@ -1,8 +1,12 @@
 from gcd import gcd
 from algoritm_evklida import algoritm_evklida_with_a_b
+
+
 def porivniia(a:int, b:int, n:int):
-    d=gcd(a, n)
-    print(d)
+    '''
+    Функція що розв'язує лінійне порівняння виду ax=b(mod n)
+    '''
+    d=gcd(a, n) # рахую НСД
     if d==1:
         x=algoritm_evklida_with_a_b(a, n)*b
         return x
@@ -21,7 +25,7 @@ def porivniia(a:int, b:int, n:int):
         
 
 
-print(porivniia(33, 6, 72))
+print(porivniia(33, 6, 72)) # Повертає [-26.0, -2.0, 22.0, 46.0], як було перевірено в ручну, то всі розв'язки правильні
 
 
         
