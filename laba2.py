@@ -1,4 +1,7 @@
 from laba1 import table1, table2
+from gcd import gcd
+from algoritm_evklida import algoritm_evklida_with_a_b
+
 '''
 Щоби не ламати нічого в коді першої лабораторної то просто файл було перенесено сюди, і внесені деякі виправлення як видалення з 
 алфавіту літери ё та ъ, через що були виправленні ще деякі штуку щоби перерахувати таблицю
@@ -77,3 +80,68 @@ indeckes= max_5_shutuc(max_stolbiki, idex)
 bigram_for_shifr=bigram(indeckes, russian_alphabet1)
 
 print(bigram_for_shifr)
+
+
+def encryption(plaintext, a, b, alphabet):
+    
+    m = 31
+    ciphertext = []
+    
+    i = 0
+    while i < len(plaintext):
+        bigram = plaintext[i:i+2]
+        
+        x1 = alphabet.index(bigram[0])
+        x2 = alphabet.index(bigram[1])
+        
+        X = x1*m + x2
+        Y = (a * X + b) % (m**2)
+        
+        y1 = Y // m
+        y2 = Y % m
+        
+        c1 = alphabet[y1]
+        c2 = alphabet[y2]
+        ciphertext.append(c1 + c2)
+        
+        i += 2
+    
+    return "".join(ciphertext)
+
+
+def decryption(ciphertext, a, b, alphabet):
+    
+    m = 31
+    plaintext = []
+    
+    inv_a = algoritm_evklida_with_a_b(a, m**2)
+    
+    i = 0
+    while i < len(ciphertext):
+        bigram = ciphertext[i:i+2]
+        
+        y1 = alphabet.index(bigram[0])
+        y2 = alphabet.index(bigram[1])
+        
+        Y = y1*m + y2
+        X = (inv_a * (Y - b)) % (m**2)
+        
+        x1 = X // m
+        x2 = X % m
+        
+        p1 = alphabet[x1]
+        p2 = alphabet[x2]
+        plaintext.append(p1 + p2)
+        
+        i += 2
+    
+    return "".join(plaintext)
+
+
+alphabet = "абвгдежзийклмнопрстуфхцчшщыьэюя"
+a = 2
+b = 1
+plaintext = "привет"
+ciphertext = encryption(plaintext, a, b, alphabet)
+print(ciphertext)
+print(decryption(ciphertext, a, b, alphabet))
