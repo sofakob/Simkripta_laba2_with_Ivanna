@@ -145,3 +145,38 @@ plaintext = "привет"
 ciphertext = encryption(plaintext, a, b, alphabet)
 print(ciphertext)
 print(decryption(ciphertext, a, b, alphabet))
+
+
+def find_key(x1, x2, y1, y2, x3, x4, y3, y4):
+    
+    m = 31
+    
+    X1 = x1*m + x2
+    print(X1)
+    X2 = x3*m + x4
+    print(X2)
+    Y1 = y1*m + y2
+    print(Y1)
+    Y2 = y3*m + y4
+    print(Y2)
+
+    X = (X1 - X2)%m**2
+    Y = (Y1 - Y2)%m**2
+    
+    a = porivniia(X, Y, m**2)
+    print(a)
+
+    if isinstance(a, int):
+        b = (Y1 - a*X1) % (m**2)
+        return (a%m**2, b)
+
+    keys = []
+    for a_i in a:
+        b = (Y1 - a_i*X1) % (m**2)
+        keys.append((a_i%m**2, b))
+
+    return keys
+
+#print(porivniia(155, 403, 961))
+print(find_key(18, 14, 4, 28, 13, 14, 22, 28))
+    
