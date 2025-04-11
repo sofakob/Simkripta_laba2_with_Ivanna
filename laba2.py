@@ -181,3 +181,25 @@ def find_key(x1, x2, y1, y2, x3, x4, y3, y4):
 #print(porivniia(155, 403, 961))
 print(find_key(18, 14, 4, 28, 13, 14, 22, 28))
     
+
+def decrypt_from_file(ciphertext_file, result_file, keys, alphabet):
+    
+    with open('08.txt', 'r', encoding='utf-8') as f:
+        raw_ciphertext = f.read()
+    ciphertext = raw_ciphertext.replace('\n', '').replace('\r', '')
+    
+    with open(result_file, 'w', encoding='utf-8') as f:
+        for (a_i, b_i) in keys:
+            decripted_text = decryption(ciphertext, a_i, b_i, alphabet)
+            f.write(f"Ключ (a={a_i}, b={b_i}):\n{decripted_text}\n\n")
+    
+
+
+keys = find_key(18, 14, 4, 28, 13, 14, 22, 28)
+alphabet = "абвгдежзийклмнопрстуфхцчшщыьэюя"
+ciphertext = "хбтйьнцнюбцвэтйвшлпнрклщяуйычвшлоыезбвацлнэдйвтыяввэшлньзгишньжддэйфжцзбнцребюаддлсучщмшюшрвдлцнжбйэ"
+for (a_i, b_i) in keys:
+    decrypted_text = decryption(ciphertext, a_i, b_i, alphabet)
+    print(decrypted_text)
+decrypt_from_file("08.txt", "for_text.txt", keys, alphabet)
+   
