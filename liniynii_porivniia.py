@@ -9,7 +9,7 @@ def porivniia(a:int, b:int, n:int):
     d=gcd(a, n) # рахую НСД
     if d==1:
         x=algoritm_evklida_with_a_b(a, n)*b
-        return x
+        return int(x)
     elif d>1:
         if b%d!=0:
             return 
@@ -17,10 +17,10 @@ def porivniia(a:int, b:int, n:int):
             arr_rozviazki=[]
             a1=a/d; b1=b/d; n1=n/d
             x0=b1*algoritm_evklida_with_a_b(a1, n1)
-            arr_rozviazki.append(x0)
+            arr_rozviazki.append(int(x0))
             for i in range(d):
                 x0+=n1
-                arr_rozviazki.append(x0)
+                arr_rozviazki.append(int(x0))
             return arr_rozviazki
         
 
