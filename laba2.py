@@ -1,6 +1,7 @@
 from laba1 import table1, table2
 from gcd import gcd
 from algoritm_evklida import algoritm_evklida_with_a_b
+from liniynii_porivniia import porivniia
 
 '''
 Щоби не ламати нічого в коді першої лабораторної то просто файл було перенесено сюди, і внесені деякі виправлення як видалення з 
