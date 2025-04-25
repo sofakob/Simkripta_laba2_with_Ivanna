@@ -194,6 +194,21 @@ def decrypt_from_file(ciphertext_file, result_file, keys, alphabet):
             decripted_text = decryption(ciphertext, a_i, b_i, alphabet)
             f.write(f"Ключ (a={a_i}, b={b_i}):\n{decripted_text}\n\n")
     
+bigrams = {
+    "аы", "аь", "гф", "гх", "дх", "йй",
+    "кй", "лй", "мй", "нй", "чб", "фд",
+    "эа", "эб", "ыь",
+}
+
+def test_text(filename):
+    with open(filename, "r", encoding="utf-8", errors="ignore") as f:
+        text = f.read().lower()
+    if any(bi in text for bi in bigrams):
+        print("цей текст незмістовний")
+    else:
+        print("цей текст, швидше за все, змістовний")
+
+test_text("test_text.txt")
 
 
 keys = find_key(18, 14, 4, 28, 13, 14, 22, 28)
